@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def initialize(n):
     return np.zeros((n, n))
 
@@ -8,6 +9,14 @@ scores = {
             ('A', 'U'): 1,
             ('C', 'G'): 1
 }
+
+pairs = set([('A', 'U'), ('C', 'G')])
+
+
+def is_pair(tup):
+    if tup in pairs or tup[::-1] in pairs:
+        return True
+    return False
 
 
 def get_scores(tup):
@@ -18,22 +27,53 @@ def get_scores(tup):
     return 0
 
 
+def traceback(i, j):
+    if j <= i:
+        return
+    elif dp[i][j] == dp[i][j-1]:
+        traceback(i, j-1)
+    else:
+        for k in [b for b in range(i, j) if is_pair((seq[b], seq[j]))]:
+            if k-1 < 0:
+                if dp[i][j] == dp[k+1][j-1] + 1:
+                    structure.append((k, j))
+                    traceback(k+1, j-1)
+                    traceback(i, k-1)
+                    break
+            elif dp[i][j] == dp[i][k-1] + dp[k+1][j-1] + 1:
+                structure.append((k, j))
+                traceback(i, k-1)
+                traceback(k+1, j-1)
+                break
+
+
+def linear_representation(sequence, structure):
+    ans = ["." for _ in range(len(sequence))]
+    for s in structure:
+        ans[min(s)] = "("
+        ans[max(s)] = ")"
+    return "".join(ans)
+
+
 if __name__ == '__main__':
-    seq = 'CGAGUCGGAGUC'
+    seq = 'ACGCUCU'
     n = len(seq)
     dp = initialize(n)
-    print(dp)
-    # fill in the dp array
+    # fill in the dp array diagnally
     for k in range(n):
-        for i in range(n-k):
+        for i in range(n - k):
             j = i + k
             if i >= j:
                 dp[i][j] = 0
             else:
-                opts = [dp[i][j-1]]
+                opts = [dp[i][j - 1]]
                 for t in range(i, j):
-                    opts.append(get_scores((seq[t], seq[j])) + dp[i][t-1] + dp[t+1][j-1])
+                    if is_pair((seq[t], seq[j])):
+                        opts.append(1 + dp[i][t - 1] + dp[t + 1][j - 1])
                 opts.append(0)
                 dp[i][j] = max(opts)
-            # find the optimal solution
+    # trace back
     print(dp)
+    structure = []
+    traceback(0, n-1)
+    print(linear_representation(seq, structure))
