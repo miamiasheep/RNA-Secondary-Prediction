@@ -1,4 +1,5 @@
 import numpy as np
+from rna_tools.SecondaryStructure import draw_ss
 
 
 def initialize(n):
@@ -56,7 +57,7 @@ def linear_representation(sequence, structure):
 
 
 if __name__ == '__main__':
-    seq = 'ACGCUCU'
+    seq = 'CGAGUCGGAGUC'
     n = len(seq)
     dp = initialize(n)
     # fill in the dp array diagnally
@@ -76,4 +77,6 @@ if __name__ == '__main__':
     print(dp)
     structure = []
     traceback(0, n-1)
-    print(linear_representation(seq, structure))
+    linear_resp = linear_representation(seq, structure)
+    print(linear_resp)
+    draw_ss('rna', seq, linear_resp, 'demo.png')
