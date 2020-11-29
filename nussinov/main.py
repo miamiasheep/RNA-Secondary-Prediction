@@ -47,13 +47,15 @@ def linear_representation(sequence, structure):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description= 'RNA Secondary Structure Predicion')
     parser.add_argument('--seq', type=str, default='CGAGUCGGAGUC', help='RNA sequence')
+    parser.add_argument('--seq_file', type=str, default=None, help='File for RNA Sequence')
     parser.add_argument('--output', type=str, default='demo.png', help='The output path of images of predicted secondary struction')
     parser.add_argument('--min_loop_length', type=int, default=0, help='min loop length')
-    parser.add_argument('--score_metrics', type=str, default=None, help='File of Score metrics')
+    parser.add_argument('--score_metrics_file', type=str, default=None, help='File of Score metrics')
     args = parser.parse_args()
-    seq = args.seq
+
     min_loop_length = args.min_loop_length
-    score_metrics_file = args.score_metrics
+    score_metrics_file = args.score_metrics_file
+    seq_file = args.seq_file
     if score_metrics_file is not None:
         score_metrics = {}
         for line in open(score_metrics_file):
@@ -64,7 +66,9 @@ if __name__ == '__main__':
             ('A', 'U'): 1,
             ('C', 'G'): 1,
         }
-
+    seq = args.seq
+    if seq_file is not None:
+        seq = open(seq_file).readline()
     n = len(seq)
     dp = initialize(n)
 
