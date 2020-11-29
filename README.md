@@ -4,6 +4,20 @@ This repository is for CS571 final project in Purdue University.
 
 ## Nussinov's Algorithm
 In the directory of nussinov, it is a project of Nussinov's Algorithm.
+If you want to access this project, go to the directory of `nussinov`
+
+```
+cd nussinov
+```
+
+## Installation
+You can install all the dependencies by
+
+```
+pip install -r requirements.txt
+```
+
+## Execution
 
 If you want to run nussinov's Algorithm you can go to the nussinov directory and simply run:
 
@@ -46,3 +60,20 @@ python main.py --seq ACUG --ouput demo/demo2.png --min_loop_length 0 --score_met
 
 And you will get the following output:
 ![Alt text](nussinov/demo/demo2.png)
+
+### Read Extreme Large Sequence file
+
+If you want to read a super long sequence, it might be more convenient to store the input in a file. In that case, you can use `seq_file` option.
+
+For example, you can run store your input in seq/seq1.txt and then execute:
+
+```python
+python main.py --seq_file seq/seq1.txt --min_loop_length 1 --output demo/demo3.png
+```
+
+And the output will be:
+![Alt text](nussinov/demo/demo3.png)
+
+
+
+
