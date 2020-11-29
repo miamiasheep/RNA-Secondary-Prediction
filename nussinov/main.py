@@ -1,4 +1,5 @@
 import numpy as np
+import argparse
 from rna_tools.SecondaryStructure import draw_ss
 
 
@@ -34,7 +35,7 @@ def traceback(i, j):
     elif dp[i][j] == dp[i][j-1]:
         traceback(i, j-1)
     else:
-        for k in [b for b in range(i, j) if is_pair((seq[b], seq[j]))]:
+        for k in [b for b in range(i, j - min_loop_length) if is_pair((seq[b], seq[j]))]:
             if k-1 < 0:
                 if dp[i][j] == dp[k+1][j-1] + 1:
                     structure.append((k, j))
@@ -57,9 +58,16 @@ def linear_representation(sequence, structure):
 
 
 if __name__ == '__main__':
-    seq = 'CGAGUCGGAGUC'
+    parser = argparse.ArgumentParser(description= 'RNA Secondary Structure Predicion')
+    parser.add_argument('--seq', type=str, default='CGAGUCGGAGUC', help='RNA sequence')
+    parser.add_argument('--output', type=str, default='demo.png', help='The output path of images of predicted secondary struction')
+    parser.add_argument('--min_loop_length', type=int, default=0, help='min loop length')
+    args = parser.parse_args()
+    seq = args.seq
+    min_loop_length = args.min_loop_length
     n = len(seq)
     dp = initialize(n)
+
     # fill in the dp array diagnally
     for k in range(n):
         for i in range(n - k):
@@ -68,7 +76,7 @@ if __name__ == '__main__':
                 dp[i][j] = 0
             else:
                 opts = [dp[i][j - 1]]
-                for t in range(i, j):
+                for t in range(i, j - min_loop_length):
                     if is_pair((seq[t], seq[j])):
                         opts.append(1 + dp[i][t - 1] + dp[t + 1][j - 1])
                 opts.append(0)
@@ -79,4 +87,4 @@ if __name__ == '__main__':
     traceback(0, n-1)
     linear_resp = linear_representation(seq, structure)
     print(linear_resp)
-    draw_ss('rna', seq, linear_resp, 'demo.png')
+    draw_ss('', seq, linear_resp, args.output)
