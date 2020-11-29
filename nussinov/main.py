@@ -12,14 +12,6 @@ scores = {
             ('C', 'G'): 1
 }
 
-pairs = set([('A', 'U'), ('C', 'G')])
-
-
-def is_pair(tup):
-    if tup in pairs or tup[::-1] in pairs:
-        return True
-    return False
-
 
 def get_scores(tup):
     if tup in scores:
@@ -35,14 +27,15 @@ def traceback(i, j):
     elif dp[i][j] == dp[i][j-1]:
         traceback(i, j-1)
     else:
-        for k in [b for b in range(i, j - min_loop_length) if is_pair((seq[b], seq[j]))]:
+        for k in [b for b in range(i, j - min_loop_length) if get_scores((seq[b], seq[j])) != 0]:
+            cur_score = get_scores((seq[k], seq[j]))
             if k-1 < 0:
-                if dp[i][j] == dp[k+1][j-1] + 1:
+                if dp[i][j] == dp[k+1][j-1] + cur_score:
                     structure.append((k, j))
                     traceback(k+1, j-1)
                     traceback(i, k-1)
                     break
-            elif dp[i][j] == dp[i][k-1] + dp[k+1][j-1] + 1:
+            elif dp[i][j] == dp[i][k-1] + dp[k+1][j-1] + cur_score:
                 structure.append((k, j))
                 traceback(i, k-1)
                 traceback(k+1, j-1)
@@ -77,8 +70,7 @@ if __name__ == '__main__':
             else:
                 opts = [dp[i][j - 1]]
                 for t in range(i, j - min_loop_length):
-                    if is_pair((seq[t], seq[j])):
-                        opts.append(1 + dp[i][t - 1] + dp[t + 1][j - 1])
+                    opts.append(get_scores((seq[t], seq[j])) + dp[i][t - 1] + dp[t + 1][j - 1])
                 opts.append(0)
                 dp[i][j] = max(opts)
     # trace back
