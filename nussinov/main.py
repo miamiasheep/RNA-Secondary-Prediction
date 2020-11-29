@@ -7,17 +7,11 @@ def initialize(n):
     return np.zeros((n, n))
 
 
-scores = {
-            ('A', 'U'): 1,
-            ('C', 'G'): 1
-}
-
-
 def get_scores(tup):
-    if tup in scores:
-        return scores[tup]
-    if tup[::-1] in scores:
-        return scores[tup[::-1]]
+    if tup in score_metrics:
+        return score_metrics[tup]
+    if tup[::-1] in score_metrics:
+        return score_metrics[tup[::-1]]
     return 0
 
 
@@ -55,9 +49,22 @@ if __name__ == '__main__':
     parser.add_argument('--seq', type=str, default='CGAGUCGGAGUC', help='RNA sequence')
     parser.add_argument('--output', type=str, default='demo.png', help='The output path of images of predicted secondary struction')
     parser.add_argument('--min_loop_length', type=int, default=0, help='min loop length')
+    parser.add_argument('--score_metrics', type=str, default=None, help='File of Score metrics')
     args = parser.parse_args()
     seq = args.seq
     min_loop_length = args.min_loop_length
+    score_metrics_file = args.score_metrics
+    if score_metrics_file is not None:
+        score_metrics = {}
+        for line in open(score_metrics_file):
+            words = line.split()
+            score_metrics[(words[0], words[1])] = int(words[2])
+    else:
+        score_metrics = {
+            ('A', 'U'): 1,
+            ('C', 'G'): 1,
+        }
+
     n = len(seq)
     dp = initialize(n)
 
