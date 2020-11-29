@@ -35,6 +35,33 @@ Note: If you don't specify the scoring metrics, we will use {(A, C): 1, (C, G): 
 
 You will get the following output:
 
+std output:
+
+DP Table
+
+```
+[[0. 1. 1. 1. 2. 2. 3. 3. 3. 3. 4. 5.]
+ [0. 0. 0. 0. 1. 2. 2. 2. 2. 2. 3. 4.]
+ [0. 0. 0. 0. 1. 1. 2. 2. 2. 2. 3. 4.]
+ [0. 0. 0. 0. 0. 1. 1. 1. 2. 2. 2. 3.]
+ [0. 0. 0. 0. 0. 0. 1. 1. 2. 2. 2. 3.]
+ [0. 0. 0. 0. 0. 0. 1. 1. 1. 1. 2. 3.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 2.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 2.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+```
+
+Linear Representation:
+
+```
+(((.)))((.))
+```
+
+demo/demo1.png
+
 ![Alt text](nussinov/demo/demo1.png)
 
 ### Score Metrics Format
@@ -55,10 +82,31 @@ And we can use `score_metrics_file` option to change the score_metrics.
 For example, we can use:
 
 ```
-python main.py --seq ACUG --ouput demo/demo2.png --min_loop_length 0 --score_metrics_file score_metrics/score_1.txt
+python main.py --seq ACUG --output demo/demo2.png --min_loop_length 0 --score_metrics_file score_metrics/score_1.txt
 ```
 
 And you will get the following output:
+
+Std output:
+
+DP Table:
+
+```
+[[  0.   0.   1. 100.]
+ [  0.   0.   0.   1.]
+ [  0.   0.   0.   0.]
+ [  0.   0.   0.   0.]]
+
+```
+
+Linear Representation:
+
+```
+(..)
+```
+
+demo/demo2.png
+
 ![Alt text](nussinov/demo/demo2.png)
 
 ### Read Extreme Large Sequence file
@@ -72,6 +120,38 @@ python main.py --seq_file seq/seq1.txt --min_loop_length 1 --output demo/demo3.p
 ```
 
 And the output will be:
+
+std output:
+
+dp table:
+
+```
+[[0. 0. 0. 1. 1. 2. 2. 2. 3. 4. 4. 4. 5. 5. 6. 6.]
+ [0. 0. 0. 0. 1. 1. 1. 2. 3. 3. 3. 3. 4. 5. 6. 6.]
+ [0. 0. 0. 0. 0. 0. 1. 2. 3. 3. 3. 3. 4. 5. 5. 6.]
+ [0. 0. 0. 0. 0. 0. 1. 2. 2. 2. 2. 2. 3. 4. 5. 5.]
+ [0. 0. 0. 0. 0. 0. 1. 1. 2. 2. 2. 2. 3. 4. 4. 5.]
+ [0. 0. 0. 0. 0. 0. 0. 1. 1. 1. 1. 1. 2. 3. 4. 4.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 1. 2. 2. 3. 3.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 1. 2. 2. 3. 3.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 2. 3. 3.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 2. 2. 3.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 2. 2.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 1.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+```
+
+Linear Representation:
+
+```
+.((((.)))((.))).
+```
+
+demo/demo3.png
+
 ![Alt text](nussinov/demo/demo3.png)
 
 
