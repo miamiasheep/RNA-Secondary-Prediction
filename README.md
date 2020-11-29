@@ -21,6 +21,8 @@ Note: If you don't specify the scoring metrics, we will use {(A, C): 1, (C, G): 
 
 You will get the following output:
 
+![Alt text](nussinov/demo/demo1.png)
+
 ### Score Metrics Format
 The Score metrics use the following format:
 
@@ -43,3 +45,4 @@ python main.py --seq ACUG --ouput demo/demo2.png --min_loop_length 0 --score_met
 ```
 
 And you will get the following output:
+![Alt text](nussinov/demo/demo2.png)
