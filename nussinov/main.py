@@ -1,5 +1,7 @@
 import numpy as np
 import argparse
+import networkx as nx
+import matplotlib.pyplot as plt
 from rna_tools.SecondaryStructure import draw_ss
 
 
@@ -51,10 +53,12 @@ if __name__ == '__main__':
     parser.add_argument('--output', type=str, default='demo.png', help='The output path of images of predicted secondary struction')
     parser.add_argument('--min_loop_length', type=int, default=0, help='min loop length')
     parser.add_argument('--score_metrics_file', type=str, default=None, help='File of Score metrics')
+    parser.add_argument('--circular_plot_file', type=str, default=None, help='The output path of circular plot')
     args = parser.parse_args()
 
     min_loop_length = args.min_loop_length
     score_metrics_file = args.score_metrics_file
+    circular_plot_file = args.circular_plot_file
     seq_file = args.seq_file
     if score_metrics_file is not None:
         score_metrics = {}
@@ -64,7 +68,7 @@ if __name__ == '__main__':
     else:
         score_metrics = {
             ('A', 'U'): 1,
-            ('C', 'G'): 1,
+            ('C', 'G'): 1
         }
     seq = args.seq
     if seq_file is not None:
@@ -91,3 +95,15 @@ if __name__ == '__main__':
     linear_resp = linear_representation(seq, structure)
     print(linear_resp)
     draw_ss('', seq, linear_resp, args.output)
+    if circular_plot_file is not None:
+        G = nx.Graph()
+        for i in range(1, n):
+            G.add_edge(i-1, i)
+        labels = {}
+        for i in range(n):
+            labels[i] = seq[i]
+        for i, j in structure:
+            G.add_edge(i, j)
+        pos = nx.circular_layout(G)
+        nx.draw(G, pos, labels=labels, with_labels=True)
+        plt.savefig(circular_plot_file)
