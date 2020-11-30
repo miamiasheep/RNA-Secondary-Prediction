@@ -154,6 +154,19 @@ demo/demo3.png
 
 ![Alt text](nussinov/demo/demo3.png)
 
+### Circular Plot
+If you want to get the circular plot, you can use `--circular_plot_file` option.
+
+For example, if you want to get the circular plot of the above sequence in `seq/seq1.txt`, you can use the following command
+
+
+```
+python main.py --seq_file seq/seq1.txt --min_loop_length 1 --output demo/demo3.png --circular_plot_file demo/circular.png
+```
+
+And you can get the output in `demo/circular.png`
+
+![Alt text](nussinov/demo/circular.png)
 
 
 
