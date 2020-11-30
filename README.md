@@ -21,13 +21,27 @@ pip install -r requirements.txt
 
 If you want to run nussinov's Algorithm you can go to the nussinov directory and simply run:
 
-```python
-python main.py --seq [target sequence] --output [file location of output image] --min_loop_length [min loop length] --score_metrics_file [the file of score metrics]
+```
+python main.py
+```
+
+with the following options:
+
+```
+optional arguments:
+  -h, --help                        show this help message and exit
+  --seq                             RNA sequence
+  --seq_file                        File for RNA Sequence
+  --output                          The output path of images of predicted secondary struction
+  --min_loop_length                 Min loop length
+  --score_metrics_file              File of Score metrics
+  --circular_plot_file              The output path of circular plot
+
 ```
 
 For example, If you execute,
 
-```python
+```
 python main.py --seq CGAGUCGGAGUC --output demo/demo1.png --min_loop_length 0
 ```
 
