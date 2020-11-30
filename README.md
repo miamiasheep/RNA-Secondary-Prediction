@@ -182,5 +182,23 @@ And you can get the output in `demo/circular.png`
 
 ![Alt text](nussinov/demo/circular.png)
 
+## Zucker Algorithm
 
+### Execution
 
+If you want to run nussinov's Algorithm you can go to the nussinov directory and simply run:
+
+```
+python main.py
+```
+
+with the following options:
+
+```
+optional arguments:
+  -h, --help                        show this help message and exit
+  --seq                             RNA sequence
+  --seq_file                        File for RNA Sequence
+  --output                          The output path of images of predicted secondary struction
+  --circular_plot_file              The output path of circular plot
+```
