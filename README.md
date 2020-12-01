@@ -216,3 +216,14 @@ Convential Representation
 Circular Representation
 
 ![Alt text](nussinov/demo/zucker_circular.png)
+
+## Compare Algorithms using Real Data Set
+
+### Data
+We have collected 3975 RNA sequence data with answer of secondary structure.
+
+### Execution
+
+```
+python compare.py --input [RNA sequence file]
+```
