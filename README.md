@@ -189,7 +189,7 @@ And you can get the output in `demo/circular.png`
 If you want to run nussinov's Algorithm you can go to the nussinov directory and simply run:
 
 ```
-python main.py
+python zucker.py
 ```
 
 with the following options:
@@ -202,3 +202,17 @@ optional arguments:
   --output                          The output path of images of predicted secondary struction
   --circular_plot_file              The output path of circular plot
 ```
+
+### Example
+
+```
+python zucker.py --seq_file seq/seq1.txt --output demo/zucker1.png --circular_plot_file demo/zucker_circular.png
+```
+
+Convential Representation
+
+![Alt text](nussinov/demo/zucker1.png)
+
+Circular Representation
+
+![Alt text](nussinov/demo/zucker_circular.png)
