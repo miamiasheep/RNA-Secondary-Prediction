@@ -206,16 +206,16 @@ optional arguments:
 ### Example
 
 ```
-python zuker.py --seq_file seq/seq1.txt --output demo/zucker1.png --circular_plot_file demo/zucker_circular.png
+python zuker.py --seq_file seq/seq1.txt --output demo/zuker1.png --circular_plot_file demo/zuker_circular.png
 ```
 
 Convential Representation
 
-![Alt text](nussinov/demo/zucker1.png)
+![Alt text](nussinov/demo/zuker1.png)
 
 Circular Representation
 
-![Alt text](nussinov/demo/zucker_circular.png)
+![Alt text](nussinov/demo/zuker_circular.png)
 
 ## Compare Algorithms using Real Data Set
 
