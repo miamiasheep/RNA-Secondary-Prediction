@@ -182,7 +182,7 @@ And you can get the output in `demo/circular.png`
 
 ![Alt text](nussinov/demo/circular.png)
 
-## Zucker Algorithm
+## Zuker Algorithm
 
 ### Execution
 
