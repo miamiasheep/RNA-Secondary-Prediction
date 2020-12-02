@@ -189,7 +189,7 @@ And you can get the output in `demo/circular.png`
 If you want to run nussinov's Algorithm you can go to the nussinov directory and simply run:
 
 ```
-python zucker.py
+python zuker.py
 ```
 
 with the following options:
@@ -206,7 +206,7 @@ optional arguments:
 ### Example
 
 ```
-python zucker.py --seq_file seq/seq1.txt --output demo/zucker1.png --circular_plot_file demo/zucker_circular.png
+python zuker.py --seq_file seq/seq1.txt --output demo/zucker1.png --circular_plot_file demo/zucker_circular.png
 ```
 
 Convential Representation
