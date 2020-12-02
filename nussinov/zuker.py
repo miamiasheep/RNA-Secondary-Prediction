@@ -1,4 +1,4 @@
-from seqfold import dg, dg_cache, fold, Struct
+from seqfold import fold
 from rna_tools.SecondaryStructure import draw_ss
 import argparse
 import matplotlib.pyplot as plt
