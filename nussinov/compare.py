@@ -35,5 +35,5 @@ os.system('python main.py --seq {} --output compare/{}/nussinov_1.png --min_loop
 os.system('python main.py --seq {} --output compare/{}/nussinov_3.png --min_loop_length 3'.format(seq, name))
 os.system('python main.py --seq {} --output compare/{}/nussinov_5.png --min_loop_length 5'.format(seq, name))
 os.system('python main.py --seq {} --output compare/{}/nussinov_10.png --min_loop_length 10'.format(seq, name))
-os.system('python zucker.py --seq {} --output compare/{}/zucker.png'.format(seq, name))
+os.system('python zuker.py --seq {} --output compare/{}/zuker.png'.format(seq, name))
 
