@@ -1,4 +1,4 @@
-# CS571_final_project
+# RNA Secondary Predcition
 This repository is for CS571 final project in Purdue University.
 
 
