@@ -1,6 +1,4 @@
 # RNA Secondary Predcition
-This repository is for CS571 final project in Purdue University.
-
 
 ## Nussinov's Algorithm
 In the directory of nussinov, it is a project of Nussinov's Algorithm.
